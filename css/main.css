@@ -1574,7 +1574,7 @@ pre .javascript .function {
 }
 .sidebar-inner {
   position: relative;
-  padding: 20px 10px;
+  padding: 200px 100px;
   color: #999;
   text-align: center;
 }
@@ -1615,7 +1615,7 @@ pre .javascript .function {
 }
 .site-author-image {
   display: block;
-  margin: 0 auto;
+  margin: 100 auto;
   padding: 2px;
   max-width: 96px;
   height: auto;
@@ -1701,7 +1701,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff3985;
+  background: #0eff4d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1752,7 +1752,7 @@ pre .javascript .function {
   display: block;
 }
 .post-toc-empty {
-  font-size: 14px;
+  font-size: 20px;
   color: #666;
 }
 .post-toc-wrap {
