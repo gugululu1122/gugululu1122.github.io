@@ -4,6 +4,13 @@
   
     
     <entry>
+      <title><![CDATA[玉渊潭赏樱]]></title>
+      <url>http://yoursite.com/2017/03/26/Admiring-Sakura-in-Yuyuantan-Park/</url>
+      <content type="html"><![CDATA[<p>　　<br><a href="http://www.guokr.com/article/133104/" target="_blank" rel="external">樱花观赏指南</a><br><img src="/assets/missingWHU.jpg" alt=""></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[出来逛逛]]></title>
       <url>http://yoursite.com/2017/02/23/Go-for-a-walk/</url>
       <content type="html"><![CDATA[<p>　　打算去信息楼听个讲座，结果没找到教室，离饭点又还早，于是背着书包转悠转悠着去图书馆旁边的草坪上散步去。<br>　　今天比昨几天稍稍暖和，阳光很好，晴空万里，好久没见过这么蓝的天了。天气真是不错，感觉校园里突然多出来很多老爷爷老奶奶，有一个人扶着老旧的自行车的，有女儿搀扶着的，还有坐着轮椅的。他们走走，就找个长椅坐一会儿，眯着眼睛，太阳真好啊。旁边有几只鸟儿，叽叽喳喳地从这根树枝上飞到那根树枝上。树枝光溜溜的，阳光一洒无余。<br>　　我慢慢走在鹅卵石道上。一块块凸起的鹅卵石，白色的，带点红色的，带点黄色的，还有黑色的，很是漂亮。鹅卵石旁边是青砖铺成的小道。不过比起小道来，我还是更喜欢走窄窄的鹅卵石路，踩着很舒服。<br>　　迎面走来一位大爷，我朝他笑了笑。他也朝我笑了笑。擦肩而过时，他把我叫住了，“姑娘你在干嘛？”我说在散步呢。他说好，那来长椅上坐会儿吧。问我是哪个学院的，几年级了，从哪儿来。我猜老人家可能是常在家，儿女在身边的时候少，可能很想有个聊天的伴儿吧。正好没什么事，就和他开始聊起来了。我说我是学经管的，老爷爷说，经管好啊，挣大钱的专业啊。我笑笑。接着他问既然是学商科的，那觉得现在企业有啥问题没有。我愕然，这该从何说起。不过陪老人家说话嘛，听还是最重要的。我刚要开口，老人家就说，他在家经常能接到诈骗电话啦，他买彩票又中奖了呀，他很警觉，觉得这些肯定是骗子，但是又没办法区分哪些电话是诈骗的，他好不接。他觉得现在人和以前大不同了，问我对这些诈骗经济现象有啥办法没。哦，原来老爷爷说的企业有问题是指诈骗啊。我脑子飞速转了一圈，正想多角度给他出点主意，老爷爷说你还是好好学习，出来之后做了大官好好治治。我又笑笑。<br>　　我问他是不是老师，他笑笑不说话，叫住了旁边一位在散步走来的老奶奶。他跟我说老奶奶是以前的教务处老师。我叫了一声奶奶好。老奶奶开玩笑说，你看你弄得人家小姑娘多不自在。两位老人打招呼的方式很特别，像小孩子一样比试了一招太极拳。我要走了，老爷爷说，下次常来啊。我点点头，说了一声好。<br>　　继续向前走，有奶奶在和小孙子玩捉迷藏的，有花式跳绳的，有围坐在一起聊天的，一个阳光正好的冬日下午。<br><img src="/assets/walk.jpg" alt=""></p>
@@ -26,10 +33,61 @@
     </entry>
     
     <entry>
+      <title><![CDATA[基于排队论的购物商场公共厕所设置研究]]></title>
+      <url>http://yoursite.com/2016/11/03/Research-on-Public-Toilet-Setting-of-Shopping-Mall-Based-on-Queuing-Theory/</url>
+      <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　在生活中，我们在公共场所中经常碰到排队等待上厕所的情况。而这一般在女厕所较为常见，男厕所则很少看见排队。<br>　　鲜为人知的是，每年11月19日为“世界厕所日”，这个日子的确立旨在提高人们对厕所问题的关注。2014年的世界厕所日主题为“平等与尊严”，就是关注妇女和女童因失去如厕隐私而面临的性暴力威胁，和厕所使用权中出现的不平等问题。</p>
+<div align="center">　<img src="/assets/queuing theory1.png" alt="">　</div><br>　　本文针对厕所设置的问题，特别针对购物商场，考虑以下问题：<br>　　⊙公共场所中的厕所应设置多少比较合适？如何缓解排队问题？<br>　　⊙男女厕比例是否应该有所调整？<br>　　⊙考虑一定合理的等待时间的条件下，如何进行最优设计？<br>　　我们先来看看现行标准，下图为《城市公共厕所设计标准(CJJ14-2005)》，由中华人民共和国建设部颁布于2005年。<br><div align="center">　<img src="/assets/queuing theory2.png" alt="">　</div><br>    我们需要考虑的一个问题是，因为男女生理结构不同，男厕大小便器分开设置，而女性只设置大便器。<br><div align="center">　<img src="/assets/queuing theory3.png" alt="">　</div>
+
+<h2 id="研究模型"><a href="#研究模型" class="headerlink" title="研究模型"></a>研究模型</h2><pre><code>使用排队论中的M/M/C模型，M/M/C模型有以下假设：
+假设 1：顾客的到达时间相互独立；到达的顾客服从泊松分布。
+假设 2：占用卫生设施的时间服从负指数分布。
+假设 3：排队规则采取等待制，按先到先服务的规则进行。
+</code></pre><h2 id="进一步的讨论"><a href="#进一步的讨论" class="headerlink" title="进一步的讨论"></a>进一步的讨论</h2><p>平常时间 or peak hour 需求的不确定性<br>权衡   寸土寸金or 减少排队增加顾客满意度<br>实际生活中，经常有设施损坏的情况以及上厕所玩手机、看书等。<br>其他场合的扩展  eg. 学校、景区…</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Wq</td>
+<td style="text-align:left">单位用户平均等待时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Lq</td>
+<td style="text-align:left">系统中排队等候的平均用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">λ</td>
+<td style="text-align:left">单位时间内到达的用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">μ</td>
+<td style="text-align:left">单位厕间的服务人数</td>
+</tr>
+<tr>
+<td style="text-align:left">C</td>
+<td style="text-align:left">服务设施数</td>
+</tr>
+<tr>
+<td style="text-align:left">ρ</td>
+<td style="text-align:left">每个设施的使用率</td>
+</tr>
+</tbody>
+</table>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="供给角度"><a href="#供给角度" class="headerlink" title="供给角度"></a>供给角度</h3><p>2015年红点设计奖最佳奖<br>将男厕使用率较低的马桶间与女厕共享，将马桶间建设在男女厕中间一排，两侧都有门，只要一边开启或锁上，另一边的门就会上锁，如此就不会造成另一边误入的状况。</p>
+<h3 id="需求角度"><a href="#需求角度" class="headerlink" title="需求角度"></a>需求角度</h3><p>找厕所APP<br>在所有女厕坑位安装了红外探测器。<br>女生用它可以实时查看每层女厕坑位的占用情况，从而选择人最少的卫生间。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>Wong L T, Yau C L. Modelling water closet demand in shopping centres[J]. Facilities, 2013, 23(9/10):453-465.<br>W. K. Chow, L. T. Wong. Thermal Environment Design of Atria in the Hong Kong Special Administrative Region: A Survey Study[J]. Architectural Science Review, 1999, 42(4):235-252.<br>颜薇娜. 基于蒙特卡洛模拟的商业银行排队问题研究[J]. 技术经济与管理研究, 2009(1):20-22.<br>王晓磊, 黄世孟. 建筑物装设最小便器数量法规标准之两性平等研究[J]. 2004.</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[半夜想学校了]]></title>
       <url>http://yoursite.com/2016/09/10/missing-WHU/</url>
       <content type="html"><![CDATA[<p>　　一直自称为半个工学部的人，这座珞珈山墓碑承载了我许多的大学记忆，以至于它轰然倒塌时，我们都觉得有种莫名的空虚感。<br>　　曾经为了吃工学部好吃的食堂故意选了一堆主教选修课，尽管要走很长一段夜路;曾经一口气爬到十三楼，去机房里一遍遍用CAD画钩子，一遍遍地打印图纸;曾经在十几分钟的课间从本部飞奔到主教，气喘吁吁赶下一节课;曾经夜晚壮着胆子独自在主教穿梭，很好奇各个亮着灯的房间里都在做些什么;曾经难以理解工学部同学对它近乎偏激的执念;曾经战战兢兢地去一楼角落老胡的办公室，却发现他孩子似的变出了比利时巧克力分给我们吃。如今，带着各种标本味儿的考察队办公室也在他离去之后灰飞烟灭。在校时一直以为有的是机会去变形金刚楼顶欣赏东湖夜景，甚至像某姑娘一样在细雨霏霏的夜晚在顶楼偶遇到一个哲院师兄一块儿畅聊，但我现在才发现，直到毕业也没有上去到最顶层。<br>　　很多事情也如此，错过就再也没有机会了。<br><img src="/assets/missingWHU.jpg" alt=""></p>
-]]></content>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=416388125&auto=1&height=66"></iframe>]]></content>
     </entry>
     
     <entry>
