@@ -4,9 +4,10 @@
   
     
     <entry>
-      <title><![CDATA[玉渊潭赏樱]]></title>
-      <url>http://yoursite.com/2017/03/26/Admiring-Sakura-in-Yuyuantan-Park/</url>
-      <content type="html"><![CDATA[<p>　　<br><a href="http://www.guokr.com/article/133104/" target="_blank" rel="external">樱花观赏指南</a><br><img src="/assets/missingWHU.jpg" alt=""></p>
+      <title><![CDATA[从知网批量下载文献]]></title>
+      <url>http://yoursite.com/2017/04/13/Download-bulk-papers-from-CNKI/</url>
+      <content type="html"><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>有时候需要从知网中批量下载文献，手工操作需要花费大量时间，可以使用python中的selenium来自动实现。selenium 是一个非常方便的web自动化测试工具，可以将它巧妙使用于爬虫中。<br>在下载文献之前，需要做以下一些准备：<br>（1）安装python与selenium。具体教程很多，自行搜索即可。<a href="https://pypi.python.org/pypi/selenium" target="_blank" rel="external">Python bindings for Selenium</a><br>（2）下载与安装<a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="external">chromedriver</a>，使用火狐的话可以装<a href="https://github.com/mozilla/geckodriver/releases/" target="_blank" rel="external">geckodriver</a>。需要注意下载与谷歌浏览器版本相适应的chromedriver，否则容易报错。此外，还需要将chromedriver的路径添加到环境变量中。<br>（3）运行代码。以下代码主要参考<a href="http://blog.csdn.net/dao_1990/article/details/64126254" target="_blank" rel="external">python 批量下载知网(CNKI)论文</a>，在此基础上进行了修改。</p>
+<h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><h3 id="给定文章标题下载"><a href="#给定文章标题下载" class="headerlink" title="给定文章标题下载"></a>给定文章标题下载</h3><p>代码首先是针对给定的文章标题查找到文章在知网的url地址。把文章标题存到一个名为title.txt的文件中，会生成一个名为paperurl.txt的文件，存储每篇文章的url地址。接着会进入到每篇文章的具体地址中进行下载。在此过程中添加了一些随机的等待时间，避免过密集访问CNKI造成IP被封。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/Python3.6</span></div><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line">from selenium import webdriver</div><div class="line">import time</div><div class="line">import random</div><div class="line"></div><div class="line">options = webdriver.ChromeOptions()</div><div class="line">options.add_experimental_option(<span class="string">"excludeSwitches"</span>,[<span class="string">"ignore-certificate-errors"</span>])</div><div class="line">browser = webdriver.Chrome(chrome_options=options)</div><div class="line"></div><div class="line">def searchKey(keyword):</div><div class="line">    browser.get(<span class="string">"http://kns.cnki.net/kns/brief/default_result.aspx"</span>)</div><div class="line">    browser.find_element_by_id(<span class="string">'txt_1_value1'</span>).send_keys(keyword)</div><div class="line">    browser.find_element_by_id(<span class="string">'btnSearch'</span>).click()</div><div class="line"></div><div class="line">def switchToFrame(browser):</div><div class="line">    browser.switch_to.frame(<span class="string">'iframeResult'</span>)</div><div class="line"></div><div class="line">def getKeywordDownloadLink(browser,keyword,paper_downloadLinks):</div><div class="line">    link=browser.find_element_by_link_text(keyword)</div><div class="line">    url = link.get_attribute(<span class="string">'href'</span>)</div><div class="line">    url_part = url.split(<span class="string">'&amp;'</span>)[3:6]</div><div class="line">    url_str = <span class="string">'&amp;'</span>.join(url_part)</div><div class="line">    down_url = <span class="string">'http://kns.cnki.net/KCMS/detail/detail.aspx?'</span> + url_str</div><div class="line">    paper_downloadLinks.append(down_url)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</div><div class="line"></div><div class="line">    file = open(<span class="string">"D:\\software\\py\\downloadCNKI\\title.txt"</span>)</div><div class="line">    lineDatas = file.readlines();</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lineDatas:</div><div class="line">        keyword=line.strip(<span class="string">'\n'</span>)</div><div class="line">        searchKey(keyword)</div><div class="line">        sleep(random.randint(1,60))</div><div class="line">        switchToFrame(browser)</div><div class="line">        downloadLinks=[]</div><div class="line">        getKeywordDownloadLink(browser,keyword,downloadLinks)</div><div class="line">        paperurl = open(<span class="string">"D:\\software\\py\\downloadCNKI\\paperurl.txt"</span>, <span class="string">"a"</span>)</div><div class="line">        <span class="built_in">print</span>(downloadLinks,file=paperurl)</div><div class="line">    file.close()</div><div class="line">    browser.quit()</div><div class="line">	</div><div class="line">    <span class="keyword">for</span> line2 <span class="keyword">in</span> paperurl:</div><div class="line">	    url=line2.lstrip(<span class="string">"['"</span>).rstrip(<span class="string">"']\n"</span>)</div><div class="line">        <span class="built_in">print</span>(url)</div><div class="line">        time.sleep(random.randint(5,30))</div><div class="line">        browser.get(url)</div><div class="line">        paper_title=browser.title</div><div class="line">        <span class="built_in">print</span>(<span class="string">"paper title"</span>+paper_title)</div><div class="line">        <span class="keyword">if</span> u<span class="string">'中国专利全文数据库'</span> <span class="keyword">in</span> paper_title:</div><div class="line">            <span class="built_in">continue</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"try  download :"</span>+paper_title)</div><div class="line">        try:</div><div class="line">            time.sleep(random.randint(5,20))</div><div class="line">            browser.find_element_by_xpath(<span class="string">"//a[contains(text(),'PDF下载')]"</span>).click()</div><div class="line">            time.sleep(random.randint(20,45))</div><div class="line">            <span class="built_in">print</span>(<span class="string">"下载成功"</span>)</div><div class="line">            browser.quit()</div><div class="line">        except Exception as e:</div><div class="line">            try:</div><div class="line">                browser.find_element_by_xpath(<span class="string">"//a[contains(text(),'整本下载')]"</span>).click()</div><div class="line">                <span class="built_in">print</span>(<span class="string">"下载成功"</span>)</div><div class="line">            except Exception as e:</div><div class="line">                <span class="built_in">print</span>(<span class="string">"下载失败"</span>)</div></pre></td></tr></table></figure></p>
 ]]></content>
     </entry>
     
@@ -29,57 +30,6 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[基于排队论的购物商场公共厕所设置研究]]></title>
-      <url>http://yoursite.com/2016/11/03/Research-on-Public-Toilet-Setting-of-Shopping-Mall-Based-on-Queuing-Theory/</url>
-      <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　在生活中，我们在公共场所中经常碰到排队等待上厕所的情况。而这一般在女厕所较为常见，男厕所则很少看见排队。<br>　　鲜为人知的是，每年11月19日为“世界厕所日”，这个日子的确立旨在提高人们对厕所问题的关注。2014年的世界厕所日主题为“平等与尊严”，就是关注妇女和女童因失去如厕隐私而面临的性暴力威胁，和厕所使用权中出现的不平等问题。</p>
-<div align="center">　<img src="/assets/queuing theory1.png" alt="">　</div><br>　　本文针对厕所设置的问题，特别针对购物商场，考虑以下问题：<br>　　⊙公共场所中的厕所应设置多少比较合适？如何缓解排队问题？<br>　　⊙男女厕比例是否应该有所调整？<br>　　⊙考虑一定合理的等待时间的条件下，如何进行最优设计？<br>　　我们先来看看现行标准，下图为《城市公共厕所设计标准(CJJ14-2005)》，由中华人民共和国建设部颁布于2005年。<br><div align="center">　<img src="/assets/queuing theory2.png" alt="">　</div><br>    我们需要考虑的一个问题是，因为男女生理结构不同，男厕大小便器分开设置，而女性只设置大便器。<br><div align="center">　<img src="/assets/queuing theory3.png" alt="">　</div>
-
-<h2 id="研究模型"><a href="#研究模型" class="headerlink" title="研究模型"></a>研究模型</h2><pre><code>使用排队论中的M/M/C模型，M/M/C模型有以下假设：
-假设 1：顾客的到达时间相互独立；到达的顾客服从泊松分布。
-假设 2：占用卫生设施的时间服从负指数分布。
-假设 3：排队规则采取等待制，按先到先服务的规则进行。
-</code></pre><h2 id="进一步的讨论"><a href="#进一步的讨论" class="headerlink" title="进一步的讨论"></a>进一步的讨论</h2><p>平常时间 or peak hour 需求的不确定性<br>权衡   寸土寸金or 减少排队增加顾客满意度<br>实际生活中，经常有设施损坏的情况以及上厕所玩手机、看书等。<br>其他场合的扩展  eg. 学校、景区…</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">符号</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Wq</td>
-<td style="text-align:left">单位用户平均等待时间</td>
-</tr>
-<tr>
-<td style="text-align:left">Lq</td>
-<td style="text-align:left">系统中排队等候的平均用户数</td>
-</tr>
-<tr>
-<td style="text-align:left">λ</td>
-<td style="text-align:left">单位时间内到达的用户数</td>
-</tr>
-<tr>
-<td style="text-align:left">μ</td>
-<td style="text-align:left">单位厕间的服务人数</td>
-</tr>
-<tr>
-<td style="text-align:left">C</td>
-<td style="text-align:left">服务设施数</td>
-</tr>
-<tr>
-<td style="text-align:left">ρ</td>
-<td style="text-align:left">每个设施的使用率</td>
-</tr>
-</tbody>
-</table>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="供给角度"><a href="#供给角度" class="headerlink" title="供给角度"></a>供给角度</h3><p>2015年红点设计奖最佳奖<br>将男厕使用率较低的马桶间与女厕共享，将马桶间建设在男女厕中间一排，两侧都有门，只要一边开启或锁上，另一边的门就会上锁，如此就不会造成另一边误入的状况。</p>
-<h3 id="需求角度"><a href="#需求角度" class="headerlink" title="需求角度"></a>需求角度</h3><p>找厕所APP<br>在所有女厕坑位安装了红外探测器。<br>女生用它可以实时查看每层女厕坑位的占用情况，从而选择人最少的卫生间。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>Wong L T, Yau C L. Modelling water closet demand in shopping centres[J]. Facilities, 2013, 23(9/10):453-465.<br>W. K. Chow, L. T. Wong. Thermal Environment Design of Atria in the Hong Kong Special Administrative Region: A Survey Study[J]. Architectural Science Review, 1999, 42(4):235-252.<br>颜薇娜. 基于蒙特卡洛模拟的商业银行排队问题研究[J]. 技术经济与管理研究, 2009(1):20-22.<br>王晓磊, 黄世孟. 建筑物装设最小便器数量法规标准之两性平等研究[J]. 2004.</p>
 ]]></content>
     </entry>
     
