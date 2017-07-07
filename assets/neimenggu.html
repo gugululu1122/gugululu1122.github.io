@@ -1,0 +1,160 @@
+<html>
+  <head>
+                <meta charset='utf-8'>
+                <style type='text/css'>
+                body {
+                margin: 0;
+                }
+                #main {
+                height: 100%;
+                }
+                </style>
+                </head>
+                <body>
+                <div id='main'></div>
+                <script src='http://echarts.baidu.com/build/dist/echarts.js'></script>
+                <script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=q9U1lWgCK1aBGVC1DVWrgWa7'></script>
+                <script src='http://echarts.baidu.com/doc/asset/js/jquery.min.js'></script>
+                <script>
+
+                (function () {
+                require.config({
+                paths: {
+                echarts:'http://echarts.baidu.com/doc/example/www/js'
+                },
+                packages: [
+                {
+                name: 'BMap',
+                location: 'http://lchiffon.github.io/reveal_slidify/echarts/require',
+                main: 'main'
+                }
+                ]
+                });
+
+                require(
+                [
+                'echarts',
+                'BMap',
+                'echarts/chart/map'
+                ],
+                function (echarts, BMapExtension) {
+
+                var BMapExt = new BMapExtension($('#main')[0], BMap, echarts,{
+                enableMapClick: false
+                });
+                var map = BMapExt.getMap();
+                var container = BMapExt.getEchartsContainer();
+
+                var startPoint = {
+                x: 114.5,
+                y: 45
+                };
+                var point = new BMap.Point(startPoint.x, startPoint.y);
+                map.centerAndZoom(point, 6);
+                map.enableScrollWheelZoom(true);
+                map.setMapStyle({style:'midnight'});
+
+
+optionID_20170707095352_82445 = {
+  color: ['gold','aqua','lime'],
+  title : {
+    text: '',
+    subtext: '',
+    x:'center',
+    textStyle : {
+      color: 'black'
+    }
+  },
+  tooltip : {
+    show: true,
+    trigger: 'item',
+    formatter: function (v) {
+               if(v[2].tooltipValue!=null){
+               return v[2].tooltipValue;
+               }else{
+               return v[1];
+               }
+  }},
+  toolbox: {
+    show : true,
+    orient : 'vertical',
+    x: 'right',
+    y: 'center',
+    feature : {
+      mark : {show: true},
+      dataView : {show: true, readOnly: false},
+      restore : {show: true},
+      saveAsImage : {show: true}
+    }
+  },
+  series : [
+    {
+      type:'map',
+      mapType: 'none',
+      data:[]
+      
+  ,markLine : {
+    Symbol:['NA', 'NA'],
+    symbolSize:['0', '5'],
+    smooth:true,
+    smooth:0.3,
+    effect : {
+      show: true,
+      scaleSize: 1,
+      period: 30,
+      color: '#fff',
+      shadowBlur: 10
+    },
+    itemStyle : {
+      color: 'red',
+      normal: {
+        color:'yellow',
+        borderWidth:1,
+        lineStyle: {
+          type: 'dashed',
+          width: 2,
+          shadowBlur: 10
+        },
+        label:{show:false}
+      }
+    },
+
+    data : [[{name:'北京'}, {name:'通辽',value: 6}],
+[{name:'通辽'}, {name:'白城',value:21}],
+[{name:'白城'}, {name:'阿尔山',value:59}],
+[{name:'阿尔山'}, {name:'海拉尔',value:82}],
+[{name:'海拉尔'}, {name:'额尔古纳',value:79}],
+[{name:'额尔古纳'}, {name:'恩和俄罗斯民族乡',value:71}],
+[{name:'恩和俄罗斯民族乡'}, {name:'满洲里',value:24}],
+[{name:'满洲里'}, {name:'扎赉诺尔',value:91}],
+[{name:'扎赉诺尔'}, {name:'海拉尔',value:30}],
+[{name:'海拉尔'}, {name:'北京',value:92}]]},
+    geoCoord:{'北京': [116.4137,39.91087],
+'通辽': [122.2501,43.65795],
+'白城': [122.8452,45.62545],
+'阿尔山': [119.9505,47.18303],
+'海拉尔': [119.7426,49.21825],
+'额尔古纳': [120.1865,50.24816],
+'恩和俄罗斯民族乡': [119.9330,50.82903],
+'满洲里': [117.3822,49.60450],
+'扎赉诺尔': [117.7993,49.49267]
+    }
+  
+      
+
+    },
+    ]
+};
+
+
+var myChart = BMapExt.initECharts(container);
+window.onresize = myChart.onresize;
+BMapExt.setOption(optionID_20170707095352_82445);
+                }
+                );
+                })();
+</script>
+  </body>
+  </html>
+
+  
